@@ -2,7 +2,6 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-var install = require('gulp-install');
 var inquirer = require('inquirer');
 
 gulp.task('default', function (done) {
@@ -36,7 +35,7 @@ gulp.task('default', function (done) {
         .pipe(filterImages.restore)
         .pipe(filterGulp.restore)
         .pipe(gulp.dest('./'))
-        .pipe(install())
+        .pipe($.install())
         .on('end', function () {
           done();
         });
