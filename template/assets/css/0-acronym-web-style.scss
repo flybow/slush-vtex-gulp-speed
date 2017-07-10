@@ -1,0 +1,41 @@
+@import "compass";
+
+/**
+ * Variables
+ */
+@import "0-<%= storeAcronym %>-web-variables";
+
+/**
+ * Vendor
+ */
+@import "0-<%= storeAcronym %>-web-bootstrap";
+
+/**
+ * Helpers
+ */
+@import "0-<%= storeAcronym %>-web-sprite";
+
+/**
+ * Components
+ */
+// @import "0-<%= storeAcronym %>-web-";
+
+/**
+ * Styles
+ */
+@import "0-<%= storeAcronym %>-web-main";
+
+@import "0-<%= storeAcronym %>-web-header";
+
+/*
+@import "0-<%= storeAcronym %>-web-flags";
+@import "0-<%= storeAcronym %>-web-shelf";
+
+@import "0-<%= storeAcronym %>-web-home";
+@import "0-<%= storeAcronym %>-web-product";
+@import "0-<%= storeAcronym %>-web-list";
+@import "0-<%= storeAcronym %>-web-departament";
+@import "0-<%= storeAcronym %>-web-category";
+*/
+
+@import "0-<%= storeAcronym %>-web-footer";

@@ -1,0 +1,9 @@
+{
+  "versions": {
+    "0": {
+      "web": [
+        "assets/vendor/avanti-class/avanti-class.js"
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "slush-vtex-gulp-speed",
+  "version": "0.1.0",
+  "description": "Slush VTEX Gulp Speed",
+  "main": "index.js",
+  "author": "Carlo Schneider <carlo.schneider@penseavanti.com.br>",
+  "license": "MIT",
+  "keywords": [
+    "slushgenerator"
+  ],
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-filter": "^5.0.0",
+    "gulp-install": "^1.1.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-template": "^4.0.0",
+    "inquirer": "^3.2.0",
+    "slush": "^1.1.1"
+  }
+}

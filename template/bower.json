@@ -1,0 +1,31 @@
+{
+  "name": "vtex-speed-gulp",
+  "description": "VTEX Store development tools - reverse proxy, compilation, minification, optimization and more!",
+  "main": "",
+  "authors": [
+    "Carlo Schneider <carlo.schneider@penseavanti.com.br>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "vtex",
+    "speed",
+    "vtex",
+    "speed",
+    "gulp",
+    "sass",
+    "compass"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7"
+  }
+}

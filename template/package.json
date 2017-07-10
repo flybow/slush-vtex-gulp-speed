@@ -1,0 +1,46 @@
+{
+  "name": "vtex-speed-gulp",
+  "author": "Carlo Schneider <carlo.schneider@penseavanti.com.br>",
+  "store": "<%= storeName %>",
+  "acronym": "<%= storeAcronym %>",
+  "environment": "vtexcommercestable",
+  "license": "ISC",
+  "version": "0.1.0",
+  "description": "VTEX Store development tools - reverse proxy, compilation, minification, optimization and more!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vtex",
+    "speed",
+    "vtex",
+    "speed",
+    "gulp",
+    "sass",
+    "compass"
+  ],
+  "devDependencies": {
+    "connect-http-please": "^0.2.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-clean-css": "^2.0.3",
+    "gulp-compass": "^2.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^4.2.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-debug": "^2.1.2",
+    "gulp-header": "^1.7.1",
+    "gulp-image-optimization": "^0.1.3",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-open": "^1.0.0",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-strip-comments": "^2.4.3",
+    "gulp-uglify": "^1.5.3",
+    "isarray": "^1.0.0",
+    "proxy-middleware": "^0.15.0",
+    "run-sequence": "^1.1.5",
+    "serve-static": "^1.10.0",
+    "url": "^0.11.0"
+  }
+}
