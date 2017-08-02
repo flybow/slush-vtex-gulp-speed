@@ -199,6 +199,12 @@ gulp.task('js:main', function () {
 
       gulp.src(files)
         .pipe($.sourcemaps.init())
+        .pipe(
+          $.babel().on('error', function (error) {
+            console.log(error);
+            this.emit('end');
+          })
+        )
         .pipe($.concat(i +'-'+ acronym +'-'+ device +'-application.js'))
         .pipe($.sourcemaps.write())
         .pipe(gulp.dest('build/arquivos/'))

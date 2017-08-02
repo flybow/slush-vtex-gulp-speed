@@ -7,11 +7,11 @@
  * MIT Licensed.
  */
 // Inspired by base2 and Prototype
-(function(){
+(function avantiClass(){
   var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
 
   // The base Class implementation (does nothing)
-  this.ClassAvanti = function(){};
+  window.ClassAvanti = function(){};
 
   // Create a new Class that inherits from this class
   ClassAvanti.extend = function(prop) {
@@ -61,21 +61,23 @@
     ClassAvanti.prototype.constructor = ClassAvanti;
 
     // And make this class extendable
-    ClassAvanti.extend = arguments.callee;
+    ClassAvanti.extend = avantiClass;
 
     return ClassAvanti;
   };
 })();
 
-/**
- * Namespace
- */
+/** Namespace **/
 var APP = {
   core: {},
   component: {},
   controller: {},
   i: {}
 };
+
+$(window).load(function() {
+  // new APP.core.Main();
+});
 
 $(document).ready(function () {
   new APP.core.Main();
@@ -102,14 +104,13 @@ APP.core.Main = ClassAvanti.extend({
   start: function () {
     APP.i.util = new APP.core.Util();
     APP.i.general = new APP.controller.General();
-
     this.loadPageController();
   },
 
   loadPageController: function () {
     var controller = APP.i.util.getController();
 
-    if (controller && typeof APP.controller[controller] === 'function') {
+    if (controller) {
       APP.i.currentController = new APP.controller[controller]();
     }
   }
