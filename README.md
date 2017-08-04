@@ -1,6 +1,4 @@
-# Avanti Class
-
-## Install
+# Install
 
 1. `$ npm install -g slush slush-vtex-gulp-speed`.
 2. Create project diretory: `$ mkdir my-store`.
