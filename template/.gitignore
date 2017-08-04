@@ -10,7 +10,7 @@ Thumbs.db
 .sass-cache
 
 # Directories #
-#/assets/vendor
+/assets/vendor
 /node_modules
 /build
 /deploy

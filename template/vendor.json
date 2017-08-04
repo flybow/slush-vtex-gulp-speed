@@ -2,7 +2,7 @@
   "versions": {
     "0": {
       "web": [
-        "assets/vendor/avanti-class/avanti-class.js"
+        "assets/vendor/avanti-class/src/avanti-class.js"
       ]
     }
   }
