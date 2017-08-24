@@ -233,6 +233,12 @@ gulp.task('js:deploy', function () {
   return gulp.src('build/arquivos/*.js')
     .pipe($.stripComments())
     .pipe($.uglify())
+    .pipe(
+      $.babel().on('error', function (error) {
+        console.log(error);
+        this.emit('end');
+      })
+    )
     .pipe($.header(bannerFiles))
     .pipe(gulp.dest('deploy/js/'));
 });
