@@ -6,6 +6,7 @@ var gulp = require('gulp')
   , del = require('del')
   , pkg = JSON.parse(fs.readFileSync('package.json'))
   , version = parseInt(pkg.version)
+  , secureUrl = pkg.secureUrl
   , store = pkg.store
   , acronym = pkg.acronym
   , env = pkg.environment
@@ -34,13 +35,28 @@ var accountName = store
   , imgProxyOptions = url.parse('http://' + accountName + '.vteximg.com.br/arquivos')
   , portalProxyOptions = url.parse('http://' + portalHost + '/')
   , bannerFiles = '/**\n' +
-                  ' * Avanti ComunicaÃ§Ã£o <contato@penseavanti.com.br>\n' +
+                  ' * Avanti Comunicação <contato@penseavanti.com.br>\n' +
                   ' * '+ accountName + '\n' +
                   ' * @date <%= new Date() %>\n' +
                   ' */\n\n';
 
+if (secureUrl) {
+  imgProxyOptions = url.parse('https://' + accountName + '.vteximg.com.br/arquivos')
+}
+
 imgProxyOptions.route = '/arquivos';
+
+if (secureUrl) {
+  portalProxyOptions = url.parse('https://' + portalHost + '/')
+}
+
 portalProxyOptions.preserveHost = true;
+
+var rewriteLocation = function (location) {
+  return location
+    .replace('https:', 'http:')
+    .replace(environment, 'vtexlocal');
+};
 
 
 //                                  _
@@ -61,7 +77,30 @@ gulp.task('connect', function () {
          */
         function disableCompression (req, res, next) {
           req.headers['accept-encoding'] = 'identity';
-          return next();
+
+          next();
+        },
+
+        function rewriteLocationHeader (req, res, next) {
+          var writeHead = res.writeHead;
+
+          res.writeHead = function (statusCode, headers) {
+            if (headers && headers.location) {
+              headers.location = rewriteLocation(headers.location)
+            }
+
+            res.writeHead = writeHead;
+
+            res.writeHead(statusCode, headers);
+          };
+
+          next();
+        },
+
+        function replaceHost (req, res, next) {
+          req.headers.host = portalHost
+
+          next();
         },
 
         /**
@@ -75,7 +114,7 @@ gulp.task('connect', function () {
           });
 
           if (ignore) {
-            return next();
+            next();
           }
 
           var data = '';
@@ -102,21 +141,30 @@ gulp.task('connect', function () {
             if (data) {
               data = data.replace(new RegExp(environment, 'g'), 'vtexlocal');
               data = data.replace(new RegExp('vteximg', 'g'), 'vtexlocal');
+
+              if (secureUrl) {
+                data = data.replace(new RegExp('https:\/\/' + accountName, 'g'), 'http://' + accountName);
+              }
             }
 
             res.write = write;
             res.end = end;
             res.writeHead = writeHead;
 
-            if (proxiedHeaders !== null) {
+            if (proxiedStatusCode && proxiedHeaders) {
               proxiedHeaders['content-length'] = Buffer.byteLength(data);
+
+              if (secureUrl) {
+                delete proxiedHeaders['content-security-policy'];
+              }
+
               res.writeHead(proxiedStatusCode, proxiedHeaders);
             }
 
-            return res.end(data, encoding);
+            res.end(data, encoding);
           }
 
-          return next();
+          next();
         },
 
         /**

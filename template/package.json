@@ -4,6 +4,7 @@
   "store": "<%= storeName %>",
   "acronym": "<%= storeAcronym %>",
   "environment": "vtexcommercestable",
+  "secureUrl": true,
   "license": "ISC",
   "version": "0.1.0",
   "description": "VTEX Store development tools - reverse proxy, compilation, minification, optimization and more!",
