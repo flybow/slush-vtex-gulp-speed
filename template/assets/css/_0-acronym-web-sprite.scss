@@ -2,6 +2,9 @@
 
 $sprite-spacing: 10px;
 $sprite-sprite-base-class: ".sprite";
+$sprite-sprite-dimensions: true;
+$sprite-layout: smart;
+
 @import "sprite/*.png";
 
 @include all-sprite-sprites;
