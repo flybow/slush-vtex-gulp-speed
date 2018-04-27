@@ -8,3 +8,7 @@ $sprite-layout: smart;
 @import "sprite/*.png";
 
 @include all-sprite-sprites;
+
+.sprite {
+  display: inline-block;
+}
