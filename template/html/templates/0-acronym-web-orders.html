@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
+  <head>
+    <vtex:metaTags/>
+    <meta name="controller" content="Orders" />
+
+    <!-- START - Subtemplate Metatags -->
+    <vtex:template id="0-<%= storeAcronym %>-web-metatags" />
+    <!-- END - Subtemplate Metatags -->
+
+    <!-- START - Style e Subtemplate Styles -->
+    <vtex:template id="0-<%= storeAcronym %>-web-styles" />
+    <!-- END - Subtemplate Styles -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <!-- START - Subtemplate Header -->
+    <vtex:template id="0-<%= storeAcronym %>-web-header" />
+    <!-- END - Subtemplate Header -->
+
+    <!-- START - Miolo da página -->
+    <main class="main" id="main">
+      <div class="breadcrumb av-container">
+        <div class="av-row">
+          <div class="bread-crumb">
+            <ul>
+              <li><a title="Home" href="/">Home</a></li>
+              <li><a title="Minha conta" href="/account">minha conta</a></li>
+              <li class="last"><strong><a title="Meus pedidos" href="/account/orders">meus pedidos</a></strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="account-title av-container">
+        <div class="av-row">
+          <h1>Meus pedidos</h1>
+        </div>
+      </div>
+
+      <div class="account-content av-container">
+        <div class="av-row">
+          <div class="account-orders">
+            <vtex.cmc:orderList/>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- END - Miolo da página -->
+
+    <!-- START - Subtemplate Generico -->
+    <vtex:template id="0-<%= storeAcronym %>-web-generico" />
+    <!-- END - Subtemplate Generico -->
+
+    <!-- START - Subtemplate Footer -->
+    <vtex:template id="0-<%= storeAcronym %>-web-footer" />
+    <!-- END - Subtemplate Footer -->
+
+    <!-- START - Suport content -->
+    <div class="suport-content"></div>
+    <!-- END - Suport content -->
+
+    <!-- START - Scripts e Subtemplate Scripts -->
+    <vtex:template id="0-<%= storeAcronym %>-web-scripts" />
+    <!-- END - Subtemplate Scripts -->
+  </body>
+</html>

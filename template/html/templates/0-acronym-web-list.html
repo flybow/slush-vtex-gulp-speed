@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common" xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="pt-br">
+
+<head>
+  <vtex:metaTags/>
+  <meta name="controller" content="List" />
+
+  <!-- START - Subtemplate Metatags -->
+  <vtex:template id="0-<%= storeAcronym %>-web-metatags" />
+  <!-- END - Subtemplate Metatags -->
+
+  <!-- START - Style e Subtemplate Styles -->
+  <vtex:template id="0-<%= storeAcronym %>-web-styles" />
+  <!-- END - Subtemplate Styles -->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <!-- START - Subtemplate Header -->
+  <vtex:template id="0-<%= storeAcronym %>-web-header" />
+  <!-- END - Subtemplate Header -->
+
+  <!-- START - Main -->
+  <main class="main" id="main">
+    <div class="av-container">
+      <div class="av-row">
+        <div class="av-col-xs-24">
+          <div class="search-banner search-banner--desktop">
+            <vtex:contentPlaceHolder id="Banner Top" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="av-container">
+      <div class="av-row">
+        <div class="av-col-xs-24 av-col-md-6">
+          <!-- START: Filter -->
+          <div class="search-filter">
+            <vtex.cmc:searchNavigator />
+          </div>
+          <!-- START: End -->
+        </div>
+
+        <div class="av-col-xs-24 av-col-md-18">
+          <!-- START: Search result -->
+          <div class="search__result">
+            <div class="search__result-top">
+              <!-- START: Breadcrumb -->
+              <div class="breadcrumb">
+                <vtex.cmc:breadCrumb />
+              </div>
+              <!-- END: Breadcrumb -->
+
+              <!-- START: Filter button -->
+              <div class="search__result-filter">
+                <button class="button__open-filter">Filtrar</button>
+              </div>
+              <!-- END: Filter button -->
+
+              <!-- START: Order -->
+              <div class="search__result-order">
+                <select class="search-order" id="search-order">
+                  <option value="">Escolha aqui</option>
+                  <option value="OrderByPriceASC">Menor Preço</option>
+                  <option value="OrderByPriceDESC">Maior Preço</option>
+                  <option value="OrderByTopSaleDESC">Mais vendidos</option>
+                  <option value="OrderByReviewRateDESC">Melhores avaliações</option>
+                  <option value="OrderByNameASC">A - Z</option>
+                  <option value="OrderByNameDESC">Z - A</option>
+                  <option value="OrderByReleaseDateDESC">Data de lançamento</option>
+                  <option value="OrderByBestDiscountDESC">Melhor Desconto</option>
+                </select>
+              </div>
+              <!-- END: Order -->
+            </div>
+
+            <!-- START: Result -->
+            <div class="search-default">
+              <vtex.cmc:searchResult layout="03c4db8f-fe75-4137-8460-cddbf1f6b53f" itemCount="18" columnCount="18" />
+            </div>
+            <!-- END: Result -->
+          </div>
+          <!-- END: Search result -->
+        </div>
+      </div>
+    </div>
+
+    <hr class="separator" />
+
+    <div class="seo-contents">
+      <div class="av-container">
+        <div class="av-row">
+          <div class="col-xs-24">
+            <h2><vtex:contentPlaceHolder id="Titulo SEO" /></h2>
+            <h3><vtex:contentPlaceHolder id="Sub Titulo SEO" /></h3>
+            <p><vtex:contentPlaceHolder id="Texto SEO" /></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- END - Main -->
+
+  <script>
+    var scriptContent = $('.resultItemsWrapper').children('script').html();
+    eval('window.' + /(PageClick_)([0-9]+)/g.exec(scriptContent)[0] + ' = function () {}');
+
+    /**
+     * Avoid VTEX animation
+     */
+    function goToTopPage() { }
+  </script>
+
+  <!-- START - Subtemplate Generico -->
+  <vtex:template id="0-<%= storeAcronym %>-web-generico" />
+  <!-- END - Subtemplate Generico -->
+
+  <!-- START - Subtemplate Footer -->
+  <vtex:template id="0-<%= storeAcronym %>-web-footer" />
+  <!-- END - Subtemplate Footer -->
+
+  <!-- START - Scripts e Subtemplate Scripts -->
+  <vtex:template id="0-<%= storeAcronym %>-web-scripts" />
+  <!-- END - Subtemplate Scripts -->
+</body>
+
+</html>

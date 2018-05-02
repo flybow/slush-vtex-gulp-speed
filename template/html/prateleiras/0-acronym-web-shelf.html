@@ -1,0 +1,71 @@
+#set($id = $product.Id)
+#set($uri = $product.Uri)
+#set($escapedName = $product.HtmlEscapedName)
+
+<div class="shelf-item" data-product-id="$id" data-product-category="$product.CategoryName">
+  <div class="shelf-item__flags">
+    <div class="flag-discount">
+      $product.DiscountHightLight
+    </div>
+
+    <div class="flag-promotion">
+      $product.HightLight
+    </div>
+
+    <div class="flag-bestprice">
+      #if ($product.HasBestPrice)
+        <p class="flag flag--bestprice"></p>
+      #end
+    </div>
+  </div>
+
+  <div class="shelf-item__img">
+    <a href="$uri" class="shelf-item__img-link" title="$escapedName">
+      <div class="shelf-item__image">
+        $product.GetImageTag(280, 280)
+      </div>
+    </a>
+
+    #if ($product.IsInStock)
+      <div class="shelf-item__extra">
+        <div class="shelf-item__btns">
+          <a href="$uri" class="shelf-item__btn-more" title="$escapedName">Comprar</a>
+
+          <a href="$uri" class="shelf-item__btn-quickview" title="$escapedName">Espiar</a>
+        </div>
+      </div>
+    #end
+  </div>
+
+  <div class="shelf-item__info">
+    <h3 class="shelf-item__title">
+      <a title="$escapedName" href="$uri" class="shelf-item__title-link">$product.Name</a>
+    </h3>
+
+    <div class="shelf-item__buy-info">
+      #if ($product.IsInStock)
+        <div class="shelf-item__price">
+          <div class="shelf-item__list-price">
+            #if ($product.HasBestPrice)
+              De: $product.ListPrice
+            #end
+          </div>
+
+          <span class="shelf-item__best-price">$product.BestPrice</span>
+
+          <span class="shelf-item__installments">
+            #if ($product.NumbersOfInstallment > 1)
+              ${product.NumbersOfInstallment}x de <span class="shelf-item__installments__value">$product.InstallmentValue</span> s/ juros
+            #end
+          </span>
+        </div>
+      #else
+        <div class="product-item__no-stock">
+          <div class="product-item__no-stock-title">Produto indisponível</div>
+
+          <a href="$uri" class="product-item__no-stock-link">Avise-me quando chegar</a>
+        </div>
+      #end
+    </div>
+  </div>
+</div>
