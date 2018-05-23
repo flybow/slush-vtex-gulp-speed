@@ -1,6 +1,7 @@
 'use strict'; /* jshint ignore:line */
 
 var gulp = require('gulp')
+  , xo = require('gulp-xo')
   , path = require('path')
   , fs = require('fs')
   , del = require('del')

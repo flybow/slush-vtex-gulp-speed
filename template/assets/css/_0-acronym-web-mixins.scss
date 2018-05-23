@@ -1,0 +1,56 @@
+@mixin resetList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  @include optional-at-root('::-webkit-input-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root('::-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-ms-input-placeholder') {
+    @content;
+  }
+}
+
+@mixin arrow($direction, $size, $color) {
+  content: '';
+
+  width: 0;
+  height: 0;
+
+  $directions: ('down', 'left', 'up', 'right');
+  $positions: ('top', 'right', 'bottom', 'left');
+
+  @each $position in $positions {
+    $index: index($positions, $position);
+
+    @if nth($directions, $index) == $direction {
+      border-#{$position}: $size solid $color;
+    } @else {
+      border-#{$position}: $size solid transparent;
+    }
+  }
+}
+
+@mixin spriteImage($sprite, $image) {
+  background-image: sprite-url($sprite);
+  background-position: nth(sprite-position($sprite, $image), 1) (nth(sprite-position($sprite, $image), 2));
+  height: sprite-sprite-height($image);
+  width: sprite-sprite-width($image);
+}
