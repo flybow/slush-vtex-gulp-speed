@@ -51,6 +51,7 @@ if (secureUrl) {
 }
 
 portalProxyOptions.preserveHost = true;
+portalProxyOptions.cookieRewrite = accountName +'.vtexlocal.com.br';
 
 var rewriteLocation = function (location) {
   return location
@@ -69,7 +70,6 @@ gulp.task('connect', function () {
   $.connect.server({
     host: '*',
     port: 80,
-    debug: false,
     middleware: function() {
       return [
         /**
@@ -91,10 +91,10 @@ gulp.task('connect', function () {
 
             res.writeHead = writeHead;
 
-            res.writeHead(statusCode, headers);
+            return res.writeHead(statusCode, headers);
           };
 
-          next();
+          return next();
         },
 
         function replaceHost (req, res, next) {
@@ -103,11 +103,28 @@ gulp.task('connect', function () {
           next();
         },
 
+        function replaceReferer (req, res, next) {
+          req.headers.referer = portalHost;
+
+          return next();
+        },
+
         /**
          * replaceHtmlBody
          */
         function (req, res, next) {
-          var ignoreReplace = [/\.js(\?.*)?$/, /\.css(\?.*)?$/, /\.svg(\?.*)?$/, /\.ico(\?.*)?$/, /\.woff(\?.*)?$/, /\.png(\?.*)?$/, /\.jpg(\?.*)?$/, /\.jpeg(\?.*)?$/, /\.gif(\?.*)?$/, /\.pdf(\?.*)?$/];
+          var ignoreReplace = [
+            /\.js(\?.*)?$/,
+            /\.css(\?.*)?$/,
+            /\.svg(\?.*)?$/,
+            /\.ico(\?.*)?$/,
+            /\.woff(\?.*)?$/,
+            /\.png(\?.*)?$/,
+            /\.jpg(\?.*)?$/,
+            /\.jpeg(\?.*)?$/,
+            /\.gif(\?.*)?$/,
+            /\.pdf(\?.*)?$/
+          ];
 
           var ignore = ignoreReplace.some(function (ignore) {
             return ignore.test(req.url);
@@ -126,7 +143,7 @@ gulp.task('connect', function () {
 
           res.writeHead = function (statusCode, headers) {
             proxiedStatusCode = statusCode;
-            proxiedHeaders = headers;
+            return proxiedHeaders = headers;
           };
 
           res.write = function (chunk) {
@@ -161,7 +178,7 @@ gulp.task('connect', function () {
               res.writeHead(proxiedStatusCode, proxiedHeaders);
             }
 
-            res.end(data, encoding);
+            return res.end(data, encoding);
           }
 
           next();
@@ -230,7 +247,7 @@ gulp.task('js:main', function () {
     for (var i = 0; i <= version; i++) {
       /**
        * TODO:
-       * HÃ¡ um erro em [device] ao incrementar a versÃ£o no package.json
+       * Há um erro em [device] ao incrementar a versão no package.json
        */
       var vendor = JSON.parse(fs.readFileSync('vendor.json'))
         , files = vendor.versions[i][device]
@@ -253,6 +270,9 @@ gulp.task('js:main', function () {
             this.emit('end');
           })
         )
+        .pipe(xo())
+        .pipe(xo.format())
+        .pipe(xo.failAfterError())
         .pipe($.concat(i +'-'+ acronym +'-'+ device +'-application.js'))
         .pipe($.sourcemaps.write())
         .pipe(gulp.dest('build/arquivos/'))

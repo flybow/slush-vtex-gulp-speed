@@ -25,52 +25,63 @@
     <vtex:template id="0-<%= storeAcronym %>-web-header" />
     <!-- END - Subtemplate Header -->
 
-    <!-- START - Miolo da página -->
+    <!-- START - Main -->
     <main class="main" id="main">
-      <div class="breadcrumb av-container">
-        <div class="av-row">
+      <div class="av-container">
+        <!-- START: Breadcrumb -->
+        <div class="breadcrumb">
           <div class="bread-crumb">
             <ul>
-              <li><a title="Home" href="/">Home</a></li>
-              <li class="last"><strong><a title="Minha conta" href="/account">minha conta</a></strong></li>
+              <li>
+                <a title="<%= storeName %>" href="/"><%= storeName %></a>
+              </li>
+              <li class="last">
+                <strong>
+                  <a title="Minha conta" href="/account">Minha conta</a>
+                </strong>
+              </li>
             </ul>
           </div>
         </div>
-      </div>
+        <!-- END: Breadcrumb -->
 
-      <div class="account-title av-container">
+        <!-- START: Title -->
         <div class="av-row">
-          <h1>Minha conta</h1>
+          <div class="av-col-xs-24">
+            <h1 class="account__title">Minha conta</h1>
+          </div>
         </div>
-      </div>
+        <!-- END: Title -->
 
-      <div class="account-content av-container">
+        <!-- START: Content -->
         <div class="av-row">
-          <div class="account-profile">
-            <div class="account-block-container">
+          <div class="av-col-md-12">
+            <div class="account__content account__content--profile">
               <vtex.cmc:accountUserProfile />
 
-              <a href="javascript:;" class="account-btn account-btn--profile av-modal-open" data-target="av-modal--profile">Alterar dados</a>
+              <button class="button button--medium button--blue av-modal-open" data-target="av-modal--profile">Alterar dados</button>
             </div>
           </div>
 
-          <div class="account-address">
-            <div class="account-block-container">
-              <vtex.cmc:accountAddress/>
+          <div class="av-col-md-12">
+            <div class="account__content account__content--address">
+              <vtex.cmc:accountAddress />
 
-              <a href="javascript:;" class="account-btn account-btn--address av-modal-open" data-target="av-modal--address">Adicionar endereço</a>
+              <button class="button button--medium button--blue av-modal-open" data-target="av-modal--edit-address">Adicionar endereço</button>
             </div>
           </div>
         </div>
+        <!-- END: Content -->
       </div>
     </main>
+    <!-- END - Main -->
 
-
+    <!-- START: Modals -->
     <div class="account-modals">
       <div class="av-modal av-modal--profile">
         <div class="av-modal__modal">
           <div class="av-modal__header">
-            <a href="javascript:;" class="av-modal-close"></a>
+            <button class="av-modal-close"></button>
           </div>
 
           <div class="av-modal__content"></div>
@@ -80,7 +91,7 @@
       <div class="av-modal av-modal--address">
         <div class="av-modal__modal">
           <div class="av-modal__header">
-            <a href="javascript:;" class="av-modal-close"></a>
+            <button class="av-modal-close"></button>
           </div>
 
           <div class="av-modal__content"></div>
@@ -90,7 +101,7 @@
       <div class="av-modal av-modal--remove-address">
         <div class="av-modal__modal">
           <div class="av-modal__header">
-            <a href="javascript:;" class="av-modal-close"></a>
+            <button class="av-modal-close"></button>
           </div>
 
           <div class="av-modal__content"></div>
@@ -100,14 +111,14 @@
       <div class="av-modal av-modal--edit-address">
         <div class="av-modal__modal">
           <div class="av-modal__header">
-            <a href="javascript:;" class="av-modal-close"></a>
+            <button class="av-modal-close"></button>
           </div>
 
           <div class="av-modal__content"></div>
         </div>
       </div>
     </div>
-    <!-- END - Miolo da página -->
+    <!-- END: Modals -->
 
     <!-- START - Subtemplate Generico -->
     <vtex:template id="0-<%= storeAcronym %>-web-generico" />

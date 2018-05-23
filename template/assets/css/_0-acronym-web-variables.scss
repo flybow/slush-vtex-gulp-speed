@@ -2,4 +2,14 @@
 $grid-columns: 24;
 $grid-gutter-width: 10px;
 
-$container-large-desktop: (1160px + $grid-gutter-width);
+$container-large-desktop: (1180px + $grid-gutter-width);
+
+/* Colors */
+$black: #000;
+$gray: #eee;
+
+$bodyColor: $black;
+$borderColor: $gray;
+
+/* Fonts */
+$primaryFont: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
