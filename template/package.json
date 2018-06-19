@@ -1,14 +1,34 @@
 {
   "name": "vtex-speed-gulp",
   "author": "Carlo Schneider <carlo.schneider@penseavanti.com.br>",
-  "store": "<%= storeName %>",
-  "acronym": "<%= storeAcronym %>",
-  "environment": "vtexcommercestable",
-  "secureUrl": true,
   "license": "ISC",
   "version": "0.1.0",
   "description": "VTEX Store development tools - reverse proxy, compilation, minification, optimization and more!",
+  "vtex": {
+    "store": "<%= storeName %>",
+    "acronym": "<%= storeAcronym %>",
+    "environment": "vtexcommercestable",
+    "device": "web",
+    "protocol": "https"
+  },
+  "xo": {
+    "extends": "xo-avanti",
+    "rules": {
+      "no-warning-comments": [
+        0
+      ],
+      "unicorn/regex-shorthand": 0
+    },
+    "globals": [
+      "APP",
+      "ClassAvanti",
+      "AvantiSearch",
+      "vtexid",
+      "vtexjs"
+    ]
+  },
   "scripts": {
+    "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,32 +41,28 @@
     "compass"
   ],
   "devDependencies": {
-    "babel-preset-env": "^1.6.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "connect-http-please": "^0.3.0",
-    "del": "^2.2.0",
+    "del": "^3.0.0",
     "eslint-config-xo-avanti": "^1.2.0",
-    "gulp": "^3.9.0",
-    "gulp-babel": "^6.1.2",
-    "gulp-clean-css": "^2.0.3",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
     "gulp-compass": "^2.1.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-connect": "^4.2.0",
-    "gulp-cssmin": "^0.1.7",
-    "gulp-debug": "^2.1.2",
-    "gulp-header": "^1.7.1",
-    "gulp-image-optimization": "^0.1.3",
-    "gulp-load-plugins": "^1.1.0",
-    "gulp-open": "^1.0.0",
-    "gulp-sass": "^2.1.1",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-strip-comments": "^2.4.3",
-    "gulp-uglify": "^1.5.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.5.0",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-header": "^2.0.5",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-open": "^3.0.1",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-strip-comments": "^2.5.2",
+    "gulp-uglify": "^3.0.0",
     "gulp-xo": "^0.17.1",
-    "isarray": "^1.0.0",
     "proxy-middleware": "^0.15.0",
-    "run-sequence": "^1.1.5",
-    "serve-static": "^1.10.0",
-    "url": "^0.11.0",
-    "xo": "^0.21.1"
+    "run-sequence": "^2.2.1",
+    "serve-static": "^1.13.2"
   }
 }

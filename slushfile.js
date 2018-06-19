@@ -18,26 +18,19 @@ gulp.task('default', function (done) {
     }
   ];
 
-  var filterImages = $.filter(['**/**', '!template/assets/img/', '!template/assets/img/**'], { restore: true });
-  var filterGulp = $.filter(['**/**', '!template/gulpfile.js'], { restore: true });
-
   inquirer.prompt(questions)
     .then(function (answers) {
-      gulp.src(['template/**'], { cwd: __dirname, dot: true })
-        .pipe(filterImages)
-        .pipe(filterGulp)
-        .pipe($.template(answers))
+      gulp.src(__dirname + '/template/**', { dot: true })
+        .pipe($.template(answers, { interpolate: /<%=([\s\S]+?)%>/g }))
         .pipe($.rename(function (file) {
           if (file.basename.indexOf('-acronym-') > -1) {
             file.basename = file.basename.replace('acronym', answers.storeAcronym);
           }
         }))
-        .pipe(filterImages.restore)
-        .pipe(filterGulp.restore)
+        .pipe($.conflict('./'))
         .pipe(gulp.dest('./'))
-        .pipe($.install())
-        .on('end', function () {
-          done();
-        });
+        .on('finish', function () {
+          done()
+        })
     });
 });
