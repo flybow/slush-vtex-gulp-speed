@@ -24,10 +24,8 @@ gulp.task('default', function (done) {
   inquirer.prompt(questions)
     .then(function (answers) {
       gulp.src(['template/**'], { cwd: __dirname, dot: true })
-        .pipe($.debug({ title: 'before:' }))
         .pipe(filterImages)
         .pipe(filterGulp)
-        .pipe($.debug({ title: 'after:' }))
         .pipe($.template(answers, { interpolate: /<%=([\s\S]+?)%>/g }))
         .pipe(filterImages.restore)
         .pipe(filterGulp.restore)
@@ -40,7 +38,7 @@ gulp.task('default', function (done) {
             file.basename = file.basename.replace('acronym', answers.storeAcronym);
           }
         }))
-        // .pipe($.conflict('./'))
+        .pipe($.conflict('./'))
         .pipe(gulp.dest('./'))
         .on('finish', function () {
           done()
