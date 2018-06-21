@@ -4,6 +4,15 @@ const _rewriteLocation = (location, environment) => {
     .replace(new RegExp(`(${environment})(.+?)(\/arquivos\/)`, 'g'), 'vtexlocal$2$3')
 }
 
+const _rewriteReferer = (referer, environment, protocol) => {
+  if (protocol === 'https') {
+    referer = referer.replace('http:', 'https:')
+  }
+
+  return referer
+    .replace(new RegExp(`(${environment})(.+?)(\/arquivos\/)`, 'g'), 'vtexlocal$2$3')
+}
+
 const disableCompression = (req, res, next) => {
   req.headers['accept-encoding'] = 'identity';
 
@@ -32,8 +41,14 @@ const replaceHost = host => (req, res, next) => {
   next()
 }
 
-const replaceReferer = host => (req, res, next) => {
-  req.headers.referer = host
+const replaceReferer = (environment, protocol, host) => (req, res, next) => {
+  let referer = host
+
+  if (typeof req.headers.referer !== 'undefined') {
+    referer = _rewriteReferer(req.headers.referer, environment, protocol)
+  }
+
+  req.headers.referer = referer
 
   next()
 }

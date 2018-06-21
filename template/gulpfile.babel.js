@@ -74,7 +74,7 @@ gulp.task('connect', () => {
         middlewares.disableCompression,
         middlewares.rewriteLocationHeader(environment),
         middlewares.replaceHost(portalHost),
-        middlewares.replaceReferer(portalHost),
+        middlewares.replaceReferer(environment, vtex.protocol, portalHost),
         middlewares.replaceHtmlBody(environment, vtex.protocol),
         httpPlease({
           host: portalHost,

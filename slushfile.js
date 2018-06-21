@@ -19,13 +19,18 @@ gulp.task('default', function (done) {
   ];
 
   var filterImages = $.filter(['**/**', '!template/assets/img/', '!template/assets/img/**'], { restore: true });
+  var filterGulp = $.filter(['**/**', '!template/gulpfile.babel.js'], { restore: true });
 
   inquirer.prompt(questions)
     .then(function (answers) {
-      gulp.src(__dirname + '/template/**', { dot: true })
+      gulp.src(['template/**'], { cwd: __dirname, dot: true })
+        .pipe($.debug({ title: 'before:' }))
         .pipe(filterImages)
+        .pipe(filterGulp)
+        .pipe($.debug({ title: 'after:' }))
         .pipe($.template(answers, { interpolate: /<%=([\s\S]+?)%>/g }))
         .pipe(filterImages.restore)
+        .pipe(filterGulp.restore)
         .pipe($.rename(function (file) {
           if (file.basename[0] === '@') {
             file.basename = '.' + file.basename.slice(1)
@@ -35,7 +40,7 @@ gulp.task('default', function (done) {
             file.basename = file.basename.replace('acronym', answers.storeAcronym);
           }
         }))
-        .pipe($.conflict('./'))
+        // .pipe($.conflict('./'))
         .pipe(gulp.dest('./'))
         .on('finish', function () {
           done()
