@@ -163,6 +163,7 @@ gulp.task('js:deploy', () => {
     )
     .pipe($.header(bannerFiles))
     .pipe(gulp.dest('./deploy/js/'))
+    .pipe($.connect.reload())
 })
 
 
