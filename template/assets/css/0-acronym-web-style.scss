@@ -9,9 +9,9 @@
 /**
  * Vendor
  */
-@import '0-<%= storeAcronym %>-web-vendor-bootstrap';
-@import '0-<%= storeAcronym %>-web-vendor-burger';
-@import '0-<%= storeAcronym %>-web-vendor-slick';
+<%= (newStore ? '' : '/\/ ') %>@import '0-<%= storeAcronym %>-web-vendor-bootstrap';
+<%= (newStore ? '' : '/\/ ') %>@import '0-<%= storeAcronym %>-web-vendor-burger';
+<%= (newStore ? '' : '/\/ ') %>@import '0-<%= storeAcronym %>-web-vendor-slick';
 
 /**
  * Helpers

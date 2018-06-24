@@ -1,4 +1,4 @@
-APP.controller.Account = ClassAvanti.extend({
+<% if (newStore) { %>APP.controller.Account = ClassAvanti.extend({
   init () {
     this.setup()
     this.start()
@@ -82,4 +82,7 @@ APP.controller.Account = ClassAvanti.extend({
       $close.trigger('click')
     })
   }
-})
+})<% } else { %>APP.controller.Account = ClassAvanti.extend({
+  init () {
+  }
+})<% } %>

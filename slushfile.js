@@ -15,6 +15,21 @@ gulp.task('default', function (done) {
       name: 'storeAcronym',
       message: 'Qual a sigla da loja? (Ex.: lbm)',
       default: 'lbm'
+    },
+    {
+      type: 'list',
+      name: 'newStore',
+      message: 'Qual o tipo de loja?',
+      choices: [
+        {
+          value: true,
+          name: 'Implantação (Nova, com vendors)'
+        },
+        {
+          value: false,
+          name: 'Suporte (Legado, sem vendors)'
+        }
+      ]
     }
   ];
 
